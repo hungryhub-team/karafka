@@ -24,6 +24,7 @@ module Karafka
             ObjectSpace
               .each_object(Class)
               .select { |klass| klass < self }
+              .reject { |x| x == Pipetree::Railway || x == Trailblazer::Operation::Pipetree::Railway }
               .sort_by(&:to_s)
               .each(&:activate)
           end
